@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mengembara di Jagat Raya – Handout IPAS Kelas VI</title>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── PRINT PAGE SETUP: no browser header/footer ── */
+@page {
+  size: A4;
+  margin: 0;          /* kill ALL browser-added header/footer text */
+}
+
+/* ── VARIABLES ── */
+:root {
+  --ink:        #1a1c2e;
+  --dim:        #5a6080;
+  --card:       #f0f2fa;
+  --border:     #dce0f0;
+  --y:   #d48a00; --bg-y: #fffbea; --bd-y: #f0c040;
+  --b:   #1a5fb5; --bg-b: #eaf3ff; --bd-b: #6aaae8;
+  --pk:  #b5166b; --bg-pk:#fff0f6; --bd-pk:#e870a8;
+  --g:   #1a8a4a; --bg-g: #eafff3; --bd-g: #48cc80;
+  --pu:  #6a28b0;
+  --or:  #c95b10;
+  --tk:  #0e7a8a;
+}
+
+/* ── BODY ── */
+body {
+  background: #fff;
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.65;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ── PAGE BLOCKS: each .pg is exactly one A4 page ── */
+.pg {
+  width: 210mm;
+  height: 297mm;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 8mm 13mm 8mm;
+}
+
+/* screen preview: show page shadow + gap */
+@media screen {
+  body { background: #c8cdd8; }
+  .pg {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.22);
+    margin: 10mm auto;
+    background: #fff;
+  }
+}
+
+/* ── PAGE BREAKS for print ── */
+@media print {
+  .pg { page-break-after: always; }
+  .pg:last-child { page-break-after: avoid; }
+  @keyframes spin { from{} to{} }   /* freeze animation for print */
+}
+
+/* ══════════════ COVER (page 1) ══════════════ */
+.pg-cover {
+  background: linear-gradient(160deg, #080c20 0%, #141b45 55%, #090e30 100%);
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0;
+}
+.pg-cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at  8% 10%, rgba(255,255,255,.9), transparent),
+    radial-gradient(1px   1px   at 22% 36%, rgba(255,255,255,.7), transparent),
+    radial-gradient(2px   2px   at 38%  7%, rgba(255,255,255,.95),transparent),
+    radial-gradient(1px   1px   at 52% 50%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1.5px 1.5px at 68% 17%, rgba(255,255,255,.85),transparent),
+    radial-gradient(2px   2px   at 80% 60%, rgba(255,255,255,.9), transparent),
+    radial-gradient(1px   1px   at 91% 30%, rgba(255,255,255,.75),transparent),
+    radial-gradient(1px   1px   at 14% 70%, rgba(255,255,255,.8), transparent),
+    radial-gradient(1.5px 1.5px at 33% 82%, rgba(255,255,255,.5),transparent),
+    radial-gradient(1px   1px   at 58% 87%, rgba(255,255,255,.9), transparent),
+    radial-gradient(2px   2px   at 75% 76%, rgba(255,255,255,.7), transparent),
+    radial-gradient(1px   1px   at  4% 47%, rgba(255,255,255,.8), transparent),
+    radial-gradient(1px   1px   at 46% 26%, rgba(255,255,255,.95),transparent),
+    radial-gradient(1.5px 1.5px at 86%  7%, rgba(255,255,255,.8), transparent),
+    radial-gradient(1px   1px   at 18% 92%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1px   1px   at 62%  5%, rgba(255,255,255,.7), transparent),
+    radial-gradient(2px   2px   at 95% 50%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px   1px   at 27% 57%, rgba(255,255,255,.5), transparent),
+    radial-gradient(1px   1px   at  5% 88%, rgba(255,255,255,.7), transparent),
+    radial-gradient(1.5px 1.5px at 50% 95%, rgba(255,255,255,.6), transparent),
+    radial-gradient(1px   1px   at 73% 92%, rgba(255,255,255,.8), transparent);
+  pointer-events: none; z-index: 0;
+}
+.cover-inner { position: relative; z-index: 1; width: 100%; padding: 0 12mm; }
+
+/* solar orrery */
+.solar-system {
+  position: relative;
+  width: 180px; height: 180px;
+  margin: 0 auto 10mm;
+}
+.sun-core {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 50px; height: 50px;
+  background: radial-gradient(circle, #fff9c4, #FFD700, #FF8C00);
+  border-radius: 50%;
+  box-shadow: 0 0 18px 9px rgba(255,180,0,.55), 0 0 36px 16px rgba(255,140,0,.28);
+  animation: pulse-sun 3s ease-in-out infinite; z-index: 5;
+}
+@keyframes pulse-sun {
+  0%,100% { box-shadow: 0 0 18px 9px rgba(255,180,0,.55),0 0 36px 16px rgba(255,140,0,.28); }
+  50%      { box-shadow: 0 0 26px 14px rgba(255,180,0,.75),0 0 52px 24px rgba(255,140,0,.45); }
+}
+.orbit {
+  position: absolute; top: 50%; left: 50%;
+  border: 1px dashed rgba(255,255,255,.22); border-radius: 50%;
+  transform: translate(-50%,-50%);
+}
+.orbit-1 { width:86px;  height:86px;  animation: spin  8s linear infinite; }
+.orbit-2 { width:135px; height:135px; animation: spin 18s linear infinite; }
+.orbit-3 { width:176px; height:176px; animation: spin 35s linear infinite; }
+@keyframes spin {
+  from { transform: translate(-50%,-50%) rotate(0deg); }
+  to   { transform: translate(-50%,-50%) rotate(360deg); }
+}
+.planet { position: absolute; border-radius: 50%; }
+.mercury { width:9px;  height:9px;  top:-4.5px; left:50%; margin-left:-4.5px;
+  background: radial-gradient(circle at 35% 35%,#d8cfc4,#8c7b6e); }
+.earth   { width:14px; height:14px; top:-7px;   left:50%; margin-left:-7px;
+  background: radial-gradient(circle at 35% 35%,#64b5f6,#1565c0);
+  box-shadow: 0 0 6px rgba(33,150,243,.8); }
+.mars    { width:11px; height:11px; top:-5.5px; left:50%; margin-left:-5.5px;
+  background: radial-gradient(circle at 35% 35%,#ef9a9a,#b71c1c); }
+
+.cover-badge {
+  display: inline-block;
+  background: linear-gradient(135deg,#FF8C42,#FFD700);
+  color: #1a0a00;
+  font-family: 'Baloo 2',cursive; font-weight: 800; font-size: 8pt;
+  letter-spacing: 2px; padding: 3px 14px; border-radius: 50px;
+  text-transform: uppercase; margin-bottom: 5mm;
+}
+.cover h1 {
+  font-family: 'Baloo 2',cursive; font-weight: 800; font-size: 32pt;
+  line-height: 1.0; color: #FFD700;
+  text-shadow: 0 2px 14px rgba(255,140,0,.5);
+  margin-bottom: 4mm;
+}
+.cover-h1 { font-family:'Baloo 2',cursive; font-weight:800; font-size:32pt; line-height:1.0; color:#FFD700; text-shadow:0 2px 14px rgba(255,140,0,.5); margin-bottom:4mm; }
+.cover-sub {
+  font-size: 9pt; color: rgba(255,255,255,.55);
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 5mm;
+}
+.cover-pills {
+  display: flex; justify-content: center; gap: 6px; flex-wrap: wrap;
+  margin-bottom: 6mm;
+}
+.pill {
+  background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2);
+  border-radius: 50px; padding: 3px 12px; font-size: 8.5pt;
+  color: rgba(255,255,255,.75);
+}
+.cover-greeting {
+  background: rgba(255,255,255,.07); border: 1px solid rgba(0,229,255,.25);
+  border-radius: 10px; padding: 5mm 8mm; text-align: left;
+  max-width: 148mm; margin: 0 auto;
+}
+.cover-greeting h2 {
+  font-family: 'Baloo 2',cursive; font-size: 11pt; font-weight: 700;
+  color: #64d8f5; margin-bottom: 3mm;
+}
+.cover-greeting p { font-size: 9pt; color: rgba(255,255,255,.8); line-height: 1.6; }
+.cover-greeting p + p { margin-top: 4px; }
+
+/* ══════════════ CONTENT PAGES ══════════════ */
+
+/* thin colour bar at top of each content page */
+.page-bar {
+  height: 5px; border-radius: 0 0 4px 4px;
+  position: absolute; top: 0; left: 0; right: 0;
+}
+.bar-a { background: linear-gradient(90deg,#FFD700,#FF8C42); }
+.bar-b { background: linear-gradient(90deg,#00b8d4,#1a5fb5); }
+.bar-c { background: linear-gradient(90deg,#9c27b0,#e91e8c); }
+.bar-d { background: linear-gradient(90deg,#1a8a4a,#00b8d4); }
+
+/* page inner (push below bar) */
+.pg-inner { padding-top: 5px; flex: 1; display: flex; flex-direction: column; gap: 2mm; overflow: hidden; }
+
+/* ── SECTION HEADER ── */
+.sec-hdr { display: flex; align-items: center; gap: 8px; }
+.sec-letter {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Baloo 2',cursive; font-size: 16pt; font-weight: 800;
+  border-radius: 9px; flex-shrink: 0;
+}
+.la { background: linear-gradient(135deg,#FFD700,#FF8C42); color: #1a0a00; }
+.lb { background: linear-gradient(135deg,#00b8d4,#1a5fb5); color: #fff; }
+.lc { background: linear-gradient(135deg,#9c27b0,#e91e8c); color: #fff; }
+.sec-ttl h2 { font-family:'Baloo 2',cursive; font-size:13.5pt; font-weight:800; line-height:1.15; }
+.sec-ttl span { font-size:7.5pt; text-transform:uppercase; letter-spacing:1.5px; color:var(--dim); }
+
+/* ── CARD ── */
+.card {
+  background: var(--card); border-radius: 7px;
+  padding: 3.5mm 5mm; border: 1px solid var(--border);
+}
+.card p { margin-bottom: 5px; font-size: 10pt; }
+.card p:last-child { margin-bottom: 0; }
+
+/* ── 2-COL LAYOUT ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
+.four-col { display: grid; grid-template-columns: repeat(4,1fr); gap: 2.5mm; }
+
+/* ── FACT BOX ── */
+.fact {
+  border-radius: 7px; padding: 3mm 4.5mm;
+}
+.fy  { background:var(--bg-y);  border:1px solid var(--bd-y);  border-left:4px solid var(--y); }
+.fb  { background:var(--bg-b);  border:1px solid var(--bd-b);  border-left:4px solid var(--b); }
+.fpk { background:var(--bg-pk); border:1px solid var(--bd-pk); border-left:4px solid var(--pk); }
+.fg  { background:var(--bg-g);  border:1px solid var(--bd-g);  border-left:4px solid var(--g); }
+.fact-tag {
+  font-family:'Baloo 2',cursive; font-size:7.5pt; font-weight:700;
+  text-transform:uppercase; letter-spacing:1px;
+  padding:1px 8px; border-radius:50px; display:inline-block; margin-bottom:3px;
+}
+.fy  .fact-tag { background:var(--y);  color:#fff; }
+.fb  .fact-tag { background:var(--b);  color:#fff; }
+.fpk .fact-tag { background:var(--pk); color:#fff; }
+.fg  .fact-tag { background:var(--g);  color:#fff; }
+.fact-title { font-family:'Baloo 2',cursive; font-weight:700; font-size:10.5pt; margin-bottom:3px; }
+.fy  .fact-title { color:var(--y); }
+.fb  .fact-title { color:var(--b); }
+.fpk .fact-title { color:var(--pk); }
+.fg  .fact-title { color:var(--g); }
+.fact p { font-size:9.5pt; margin-bottom:4px; }
+.fact p:last-child { margin-bottom:0; }
+
+/* ── DIVIDER LINE ── */
+.divline {
+  display:flex; align-items:center; gap:8px;
+}
+.divline::before,.divline::after {
+  content:''; flex:1; height:1px;
+  background:linear-gradient(90deg,transparent,var(--border),transparent);
+}
+.divline span { font-size:14pt; }
+
+/* ── HIGHLIGHT ── */
+.hl {
+  border-left:3px solid var(--y); background:var(--bg-y);
+  border-radius:0 6px 6px 0; padding:2.5mm 4mm;
+  font-style:italic; font-size:9.5pt;
+}
+
+/* ── TIMEZONE STRIP ── */
+.tz-strip {
+  display:flex; border-radius:7px; overflow:hidden;
+  border:1px solid var(--border);
+}
+.tz-bl { flex:1; padding:3mm 4mm; text-align:center; }
+.tz-bl + .tz-bl { border-left:1px solid var(--border); }
+.tz-bl.ty  { background:var(--bg-y); }
+.tz-bl.tb  { background:var(--bg-b); }
+.tz-bl.tpk { background:var(--bg-pk); }
+.tz-name { font-family:'Baloo 2',cursive; font-size:12pt; font-weight:700; }
+.ty  .tz-name { color:var(--y); }
+.tb  .tz-name { color:var(--b); }
+.tpk .tz-name { color:var(--pk); }
+.tz-region { font-size:7.5pt; color:var(--dim); line-height:1.4; margin-top:2px; }
+.tz-gmt { font-size:12pt; font-weight:700; margin-top:2px; }
+.ty  .tz-gmt { color:var(--y); }
+.tb  .tz-gmt { color:var(--b); }
+.tpk .tz-gmt { color:var(--pk); }
+
+/* ── SEASON TABLE ── */
+.seas {
+  display:grid; grid-template-columns:30mm 1fr 1fr;
+  gap:1px; background:var(--border);
+  border-radius:7px; overflow:hidden;
+}
+.sc { padding:2.5mm 3.5mm; background:#fff; font-size:9.5pt; }
+.sc.hdr { background:var(--card); font-size:7.5pt; text-transform:uppercase;
+  letter-spacing:1px; color:var(--dim); font-weight:700; }
+.sc .mo { font-family:'Baloo 2',cursive; font-weight:700; font-size:10pt; color:var(--y); }
+
+/* ── PLANET CARD ── */
+.planet-card {
+  border-radius:7px; padding:3mm; text-align:center;
+  border:1px solid var(--border);
+}
+.planet-card .icon { height:35px; display:flex; justify-content:center; align-items:center; margin-bottom:4px; font-size:18pt; }
+.planet-card .icon svg { height:100%; width:auto; }
+.planet-card .pname { font-family:'Baloo 2',cursive; font-size:9pt; font-weight:700; margin:2px 0; }
+.planet-card .pdesc { font-size:7.5pt; color:var(--dim); line-height:1.4; }
+.pm { background:#f5f2ef; } .pm .pname { color:#5a4a3a; }
+.pv { background:var(--bg-y); } .pv .pname { color:var(--y); }
+.pb { background:var(--bg-b); } .pb .pname { color:var(--b); }
+.pr { background:#fff0f0; } .pr .pname { color:#c0392b; }
+.pj { background:#fff5ea; } .pj .pname { color:#b55a00; }
+.ps { background:#fdfbea; } .ps .pname { color:#a07000; }
+.pu2{ background:#eafcfc; } .pu2 .pname { color:#007a8a; }
+.pn { background:var(--bg-b); } .pn .pname { color:var(--b); }
+
+/* ── SAT CARD ── */
+.sat-card {
+  border-radius:7px; padding:3.5mm; text-align:center;
+  border:1px solid var(--border);
+}
+.sat-card .icon { font-size:20pt; margin-bottom:3px; }
+.sat-card .sname { font-family:'Baloo 2',cursive; font-size:10pt; font-weight:700; margin-bottom:3px; }
+.sat-card .sdesc { font-size:8.5pt; color:var(--dim); }
+.s1 { background:var(--bg-y); } .s1 .sname { color:var(--y); }
+.s2 { background:var(--bg-b); } .s2 .sname { color:var(--b); }
+.s3 { background:var(--bg-g); } .s3 .sname { color:var(--g); }
+
+/* ── SUMMARY BOX ── */
+.sumbox {
+  background:var(--bg-y); border:1px solid var(--bd-y);
+  border-left:4px solid var(--y); border-radius:7px;
+  padding:4mm 5mm;
+}
+.sumbox h3 { font-family:'Baloo 2',cursive; font-size:12pt; font-weight:800; color:var(--y); margin-bottom:4mm; }
+.sum-item { display:flex; gap:8px; align-items:flex-start; margin-bottom:4mm; font-size:9.5pt; }
+.sum-item:last-child { margin-bottom:0; }
+.sbullet {
+  width:22px; height:22px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:9pt; font-weight:800; flex-shrink:0; margin-top:1px;
+}
+.by { background:var(--y);  color:#fff; }
+.bb { background:var(--b);  color:#fff; }
+.bpk{ background:var(--pk); color:#fff; }
+
+/* ── QUESTION GRID ── */
+.q-title { font-family:'Baloo 2',cursive; font-size:12pt; font-weight:800; color:var(--pu); margin-bottom:3mm; }
+.q-grid { display:grid; grid-template-columns:1fr 1fr; gap:3mm; }
+.q-card {
+  background:var(--card); border-radius:7px;
+  padding:4mm 4mm 3.5mm; border:1px solid var(--border);
+  position:relative;
+}
+.q-num {
+  position:absolute; top:-9px; left:10px;
+  font-family:'Baloo 2',cursive; font-weight:800; font-size:7.5pt;
+  padding:1px 9px; border-radius:50px;
+}
+.qn1{background:var(--y);  color:#fff;} .qn2{background:var(--tk); color:#fff;}
+.qn3{background:var(--pk); color:#fff;} .qn4{background:var(--g);  color:#fff;}
+.qn5{background:var(--pu); color:#fff;} .qn6{background:var(--or); color:#fff;}
+.q-card p { font-size:9.5pt; margin-top:7px; line-height:1.5; }
+
+/* ── UTILITY ── */
+.kw   { color:var(--y);  font-weight:700; }
+.kwb  { color:var(--b);  font-weight:700; }
+.kwpk { color:var(--pk); font-weight:700; }
+.kwg  { color:var(--g);  font-weight:700; }
+
+svg { display:block; width:100%; }
+</style>
+</head>
+<body>
+
+<div class="pg pg-cover">
+  <div class="cover-inner">
+    <div class="cover-badge">📚 IPAS Kelas VI &nbsp;·&nbsp; Bab 6</div>
+    <div class="solar-system">
+      <div class="sun-core"></div>
+      <div class="orbit orbit-1"><div class="planet mercury"></div></div>
+      <div class="orbit orbit-2"><div class="planet earth"></div></div>
+      <div class="orbit orbit-3"><div class="planet mars"></div></div>
+    </div>
+    <h1 class="cover-h1">MENGEMBARA<br>DI JAGAT RAYA</h1>
+    <div class="cover-sub">Bahan Ajar Handout &nbsp;·&nbsp; Ilmu Pengetahuan Alam dan Sosial</div>
+    <div class="cover-pills">
+      <div class="pill">☀️ Matahari, Bumi &amp; Bulan</div>
+      <div class="pill">🌀 Rotasi &amp; Revolusi</div>
+      <div class="pill">🛸 Sistem Tata Surya</div>
+    </div>
+    <div class="cover-greeting">
+      <h2>Hei, Penjelajah Antariksa! 👋</h2>
+      <p>Bayangkan kamu punya roket super canggih. Dalam hitungan detik, roket itu membawamu meluncur menembus langit biru, melewati lapisan awan yang lembut, lalu tiba-tiba, gelap. Di sekitarmu berjuta bintang berkelip seperti berlian bertaburan. Selamat datang di <span class="kw">jagat raya</span>, tempat yang luasnya bahkan para ilmuwan pun belum tahu di mana ujungnya!</p>
+      <p>Di handout ini kita akan mengintip bagaimana <span class="kw">Matahari, Bumi, dan Bulan</span> saling berhubungan, mencari tahu mengapa ada siang dan malam, menjelajahi kedelapan planet di tata surya, dan melihat teknologi keren yang sudah manusia kirim ke angkasa. Siap? Tiga… dua… satu… <em>Ignition!</em> 🚀</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="pg">
+  <div class="page-bar bar-a"></div>
+  <div class="pg-inner">
+
+    <div class="sec-hdr">
+      <div class="sec-letter la">A</div>
+      <div class="sec-ttl"><span>Bagian Pertama</span><h2>Matahari, Bumi, dan Bulan</h2></div>
+    </div>
+
+    <svg viewBox="0 0 680 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:0 auto;">
+  <defs>
+    <radialGradient id="sunG" cx="40%" cy="38%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="40%" stop-color="#FFD700"/><stop offset="100%" stop-color="#e67e00"/></radialGradient>
+    <radialGradient id="earthG" cx="38%" cy="35%"><stop offset="0%" stop-color="#81d4fa"/><stop offset="45%" stop-color="#2196F3"/><stop offset="100%" stop-color="#0d47a1"/></radialGradient>
+    <radialGradient id="moonG" cx="38%" cy="35%"><stop offset="0%" stop-color="#f5f5f5"/><stop offset="50%" stop-color="#bdbdbd"/><stop offset="100%" stop-color="#757575"/></radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="3" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <marker id="arr" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#555"/>
+    </marker>
+    <marker id="arrY" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto">
+      <polygon points="0,0 8,3 0,6" fill="#d48a00"/>
+    </marker>
+  </defs>
+  <rect width="680" height="240" rx="10" fill="#f0f4ff"/>
+  <circle cx="30" cy="20" r="1.2" fill="#aaa"/><circle cx="80" cy="50" r="1" fill="#aaa"/>
+  <circle cx="140" cy="15" r="1.5" fill="#aaa"/><circle cx="200" cy="45" r="1" fill="#aaa"/>
+  <circle cx="320" cy="10" r="1.2" fill="#aaa"/><circle cx="440" cy="28" r="1" fill="#aaa"/>
+  <circle cx="550" cy="15" r="1.5" fill="#aaa"/><circle cx="620" cy="40" r="1.2" fill="#aaa"/>
+  <circle cx="660" cy="20" r="1" fill="#aaa"/><circle cx="70" cy="220" r="1.2" fill="#aaa"/>
+  <circle cx="180" cy="210" r="1" fill="#aaa"/><circle cx="580" cy="225" r="1.5" fill="#aaa"/>
+  <ellipse cx="270" cy="120" rx="200" ry="90" fill="none" stroke="#c5cae9" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <ellipse cx="470" cy="120" rx="72" ry="42" fill="none" stroke="#b0bec5" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <circle cx="90" cy="120" r="52" fill="url(#sunG)" filter="url(#glow)" opacity="0.25"/>
+  <circle cx="90" cy="120" r="44" fill="url(#sunG)"/>
+  <g stroke="#FFD700" stroke-width="2" opacity="0.6">
+    <line x1="90" y1="68" x2="90" y2="58"/><line x1="90" y1="172" x2="90" y2="182"/>
+    <line x1="42" y1="120" x2="32" y2="120"/><line x1="138" y1="120" x2="148" y2="120"/>
+    <line x1="58" y1="88" x2="51" y2="81"/><line x1="122" y1="152" x2="129" y2="159"/>
+    <line x1="122" y1="88" x2="129" y2="81"/><line x1="58" y1="152" x2="51" y2="159"/>
+  </g>
+  <text x="90" y="115" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="700" font-size="13" fill="#7a3a00">MATAHARI</text>
+  <text x="90" y="130" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="#a05000">Bintang / Pusat</text>
+  <circle cx="470" cy="120" r="30" fill="url(#earthG)"/>
+  <ellipse cx="462" cy="112" rx="8" ry="11" fill="#4caf50" opacity="0.75"/>
+  <ellipse cx="478" cy="118" rx="6" ry="8" fill="#4caf50" opacity="0.65"/>
+  <ellipse cx="468" cy="130" rx="5" ry="5" fill="#4caf50" opacity="0.55"/>
+  <line x1="476" y1="92" x2="464" y2="148" stroke="#fff" stroke-width="1.5" stroke-dasharray="3,2" opacity="0.7"/>
+  <text x="470" y="113" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="700" font-size="11" fill="#fff">BUMI</text>
+  <text x="470" y="164" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="#555">Planet</text>
+  
+  <g transform="translate(560,85)">
+    <circle r="17" fill="url(#moonG)"/>
+    <circle cx="-5" cy="-7" r="3" fill="none" stroke="#757575" stroke-width="0.8" opacity="0.7"/>
+    <circle cx="6" cy="1" r="2" fill="none" stroke="#757575" stroke-width="0.8" opacity="0.6"/>
+    <circle cx="-2" cy="7" r="1.5" fill="none" stroke="#757575" stroke-width="0.6" opacity="0.5"/>
+  </g>
+  <text x="560" y="113" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="700" font-size="9" fill="#444">BULAN</text>
+  <text x="560" y="125" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" fill="#555">Satelit Alami</text>
+
+  <path d="M 268 34 Q 210 18 155 50" fill="none" stroke="#d48a00" stroke-width="1.8" marker-end="url(#arrY)" stroke-dasharray="none"/>
+  <text x="210" y="28" text-anchor="middle" font-family="Nunito,sans-serif" font-size="10" fill="#d48a00" font-style="italic">Bumi mengorbit Matahari</text>
+  <path d="M 530 68 Q 510 52 492 62" fill="none" stroke="#555" stroke-width="1.6" marker-end="url(#arr)"/>
+  <text x="535" y="58" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9.5" fill="#444" font-style="italic">Bulan mengorbit Bumi</text>
+  <text x="280" y="200" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" fill="#888">← Gravitasi Matahari menarik semua planet →</text>
+</svg>
+
+    <div class="two-col">
+      <div class="card">
+        <p>Setiap pagi, ada sebuah bola raksasa yang bersinar terang di langit, itulah <span class="kw">Matahari</span>. Ia bukan sekadar lampu langit biasa; Matahari adalah sebuah <span class="kw">bintang</span>, yaitu bola gas yang sangat panas sehingga bisa memancarkan cahayanya sendiri. Suhu di bagian dalamnya mencapai <span class="kw">15 juta derajat Celsius</span>! Gaya gravitasinya yang luar biasa kuat membuat semua planet, termasuk Bumi, selalu berputar mengelilinginya.</p>
+        <p>Bumi adalah planet berbatuan satu-satunya yang memiliki air, oksigen, dan suhu yang pas untuk kehidupan. Lalu ada si <span class="kw">Bulan</span>, sahabat setia Bumi. Bulan adalah <span class="kw">satelit alami</span>, artinya ia selalu mengorbit Bumi. Jarak Bumi ke Bulan sekitar 384.000 km!</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:3mm;">
+        <div class="fact fy">
+          <div class="fact-tag">💥 Fakta Mencengangkan</div>
+          <div class="fact-title">Matahari, Si Raksasa Berapi!</div>
+          <p>Diameter Matahari mencapai <strong>1.391.900 km</strong>. Kalau Bumi seukuran kelereng, maka Matahari sebesar bola basket raksasa! Di galaksi Bimasakti saja ada bintang yang lebarnya 1.708 kali diameter Matahari.</p>
+        </div>
+        <div class="fact fb">
+          <div class="fact-tag">🌙 Sisi Gelap Bulan</div>
+          <div class="fact-title">Kenapa Wajah Bulan Selalu Sama?</div>
+          <p>Lama rotasi Bulan persis sama dengan lama Bulan mengorbit Bumi, sekitar 27 hari 8 jam. Akibatnya kita di Bumi selalu melihat sisi Bulan yang sama. Sisi sebaliknya tidak pernah menghadap kita!</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hl">
+      🤔 <strong>Analogi Seru:</strong> Bayangkan kamu berjalan mengitari pohon sambil selalu menghadapnya. Temanmu hanya akan selalu melihat wajahmu, punggungmu tidak pernah terlihat. Itulah persis yang dilakukan Bulan terhadap Bumi selama miliaran tahun!
+    </div>
+
+  </div>
+</div>
+
+
+<div class="pg">
+  <div class="page-bar bar-b"></div>
+  <div class="pg-inner">
+
+    <div class="sec-hdr">
+      <div class="sec-letter lb">B</div>
+      <div class="sec-ttl"><span>Bagian Kedua</span><h2>Pengaruh Rotasi &amp; Revolusi Bumi</h2></div>
+    </div>
+
+    <svg viewBox="0 0 680 250" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:0 auto;">
+  <defs>
+    <radialGradient id="earthDay" cx="60%" cy="40%"><stop offset="0%" stop-color="#90caf9"/><stop offset="50%" stop-color="#1976D2"/><stop offset="100%" stop-color="#0d47a1"/></radialGradient>
+    <radialGradient id="earthNight" cx="30%" cy="40%"><stop offset="0%" stop-color="#1a237e"/><stop offset="100%" stop-color="#000035"/></radialGradient>
+    <radialGradient id="sunSmall" cx="38%" cy="35%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="50%" stop-color="#FFD700"/><stop offset="100%" stop-color="#e67e00"/></radialGradient>
+    <radialGradient id="earthBlue" cx="38%" cy="35%"><stop offset="0%" stop-color="#81d4fa"/><stop offset="45%" stop-color="#2196F3"/><stop offset="100%" stop-color="#0d47a1"/></radialGradient>
+    <clipPath id="leftHalf"><rect x="0" y="0" width="50%" height="100%"/></clipPath>
+    <clipPath id="rightHalf"><rect x="50%" y="0" width="50%" height="100%"/></clipPath>
+    <marker id="arr2" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#1a5fb5"/></marker>
+    <marker id="arrO" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#d48a00"/></marker>
+    <marker id="arrG" markerWidth="8" markerHeight="6" refX="6" refY="3" orient="auto"><polygon points="0,0 8,3 0,6" fill="#1a8a4a"/></marker>
+  </defs>
+  <rect width="680" height="250" rx="10" fill="#f0f4ff"/>
+  <rect x="8" y="8" width="316" height="234" rx="8" fill="#eaf3ff"/>
+  <rect x="356" y="8" width="316" height="234" rx="8" fill="#eafff3"/>
+  <rect x="8" y="8" width="316" height="34" rx="8" fill="#1a5fb5"/>
+  <text x="166" y="30" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="14" fill="#fff">ROTASI BUMI</text>
+  <rect x="356" y="8" width="316" height="34" rx="8" fill="#1a8a4a"/>
+  <text x="514" y="30" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="14" fill="#fff">REVOLUSI BUMI</text>
+
+  <g opacity="0.35">
+    <line x1="55" y1="80" x2="105" y2="100" stroke="#FFD700" stroke-width="2.5"/>
+    <line x1="55" y1="125" x2="105" y2="125" stroke="#FFD700" stroke-width="2.5"/>
+    <line x1="55" y1="170" x2="105" y2="150" stroke="#FFD700" stroke-width="2.5"/>
+    <line x1="55" y1="52" x2="112" y2="87" stroke="#FFD700" stroke-width="2"/>
+  </g>
+  <circle cx="178" cy="130" r="62" fill="#0d47a1"/>
+  <path d="M178,68 A62,62 0 0,1 178,192 Z" fill="#2196F3"/>
+  <ellipse cx="190" cy="115" rx="12" ry="16" fill="#4caf50" opacity="0.75"/>
+  <ellipse cx="202" cy="135" rx="8" ry="10" fill="#4caf50" opacity="0.65"/>
+  <circle cx="145" cy="100" r="1.2" fill="#fff" opacity="0.7"/>
+  <circle cx="135" cy="130" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="150" cy="155" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="162" cy="115" r="1" fill="#fff" opacity="0.5"/>
+  <line x1="188" y1="62" x2="168" y2="198" stroke="#FFD700" stroke-width="2" stroke-dasharray="4,3"/>
+  <circle cx="188" cy="62" r="4" fill="#FFD700"/>
+  <circle cx="168" cy="198" r="4" fill="#e0e0e0"/>
+  <text x="198" y="59" font-family="Nunito,sans-serif" font-size="9" fill="#666">Kutub Utara</text>
+  <text x="148" y="205" font-family="Nunito,sans-serif" font-size="9" fill="#666">Kutub Selatan</text>
+  <path d="M 238 98 A 68 68 0 0 1 238 162" fill="none" stroke="#1a5fb5" stroke-width="2.5" marker-end="url(#arr2)"/>
+  <text x="252" y="125" font-family="Nunito,sans-serif" font-size="9" fill="#1a5fb5" font-weight="700">Arah</text>
+  <text x="252" y="137" font-family="Nunito,sans-serif" font-size="9" fill="#1a5fb5" font-weight="700">Rotasi</text>
+  <text x="205" y="135" font-family="Baloo 2,sans-serif" font-weight="700" font-size="10" fill="#fff">SIANG</text>
+  <text x="135" y="135" font-family="Baloo 2,sans-serif" font-weight="700" font-size="10" fill="#90caf9">MALAM</text>
+  <circle cx="38" cy="125" r="16" fill="#FFD700" opacity="0.9"/>
+  <text x="38" y="129" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8" fill="#7a3a00">☀️</text>
+  <rect x="60" y="210" width="232" height="30" rx="6" fill="#1a5fb5" opacity="0.12"/>
+  <text x="176" y="228" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="12" fill="#1a5fb5">⏱ 23 jam 56 menit / hari</text>
+
+  <ellipse cx="514" cy="130" rx="128" ry="80" fill="none" stroke="#1a8a4a" stroke-width="1.8" stroke-dasharray="5,4"/>
+  <circle cx="514" cy="130" r="22" fill="#FFD700"/>
+  <circle cx="514" cy="130" r="18" fill="url(#sunSmall)"/>
+  <text x="514" y="134" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="700" font-size="9" fill="#7a3a00">☀</text>
+  <circle cx="638" cy="130" r="14" fill="url(#earthBlue)"/>
+  <ellipse cx="635" cy="126" rx="4" ry="5" fill="#4caf50" opacity="0.7"/>
+  
+  <text x="638" y="160" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="700" font-size="9" fill="#0d47a1">Januari</text>
+  <text x="638" y="171" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8.5" fill="#c0392b" font-weight="700">Perihelion</text>
+  <text x="638" y="181" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8" fill="#888">(Paling dekat)</text>
+  
+  <path d="M610,115 A128,80 0 0,0 595,60" fill="none" stroke="#1a8a4a" stroke-width="2" marker-end="url(#arrG)"/>
+  <circle cx="390" cy="130" r="13" fill="url(#earthBlue)"/>
+  <ellipse cx="387" cy="127" rx="4" ry="4.5" fill="#4caf50" opacity="0.7"/>
+  
+  <text x="390" y="160" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="700" font-size="9" fill="#0d47a1">Juli</text>
+  <text x="390" y="171" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8.5" fill="#1a5fb5" font-weight="700">Aphelion</text>
+  <text x="390" y="181" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8" fill="#888">(Paling jauh)</text>
+  
+  <line x1="624" y1="130" x2="540" y2="130" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
+  <line x1="488" y1="130" x2="403" y2="130" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="396" y="210" width="236" height="30" rx="6" fill="#1a8a4a" opacity="0.12"/>
+  <text x="514" y="228" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="12" fill="#1a8a4a">⏱ 365,25 hari / tahun</text>
+</svg>
+
+    <div class="two-col">
+      <div class="card">
+        <p>Bumi bergerak dengan dua gerakan sekaligus. Pertama, <span class="kwb">rotasi</span>, yaitu Bumi berputar pada porosnya sendiri seperti gasing, membutuhkan <span class="kwb">23 jam 56 menit</span>. Ini yang menciptakan siang dan malam. Kedua, <span class="kwb">revolusi</span>, yaitu Bumi mengelilingi Matahari dalam orbit elips selama <span class="kwb">365,25 hari</span>. Kelebihan 0,25 hari dikumpulkan hingga setiap 4 tahun ada tahun kabisat (366 hari).</p>
+        <p>Karena orbit Bumi berbentuk elips, ada posisi <strong>Perihelion</strong> (Januari, paling dekat) dan <strong>Aphelion</strong> (Juli, paling jauh) dari Matahari.</p>
+      </div>
+      <div class="card">
+        <p>Dampak rotasi: (1) <span class="kw">Siang dan malam</span>, bagian yang menghadap Matahari terang, bagian yang membelakangi gelap. (2) <span class="kw">Gerak semu Matahari</span>, Matahari seolah terbit di timur dan terbenam di barat, padahal Bumilah yang berputar. (3) <span class="kw">Perbedaan zona waktu</span>, Bumi dibagi 24 zona waktu, setiap 15° bujur berbeda 1 jam. Indonesia punya tiga zona waktu.</p>
+      </div>
+    </div>
+
+    <div class="tz-strip">
+      <div class="tz-bl ty">
+        <div class="tz-name">WIB</div>
+        <div class="tz-region">Waktu Indonesia Barat<br>Sumatera, Jawa, Kalimantan Barat &amp; Tengah</div>
+        <div class="tz-gmt">GMT +7</div>
+      </div>
+      <div class="tz-bl tb">
+        <div class="tz-name">WITA</div>
+        <div class="tz-region">Waktu Indonesia Tengah<br>Bali, NTB, NTT, Kalimantan Timur, Sulawesi</div>
+        <div class="tz-gmt">GMT +8</div>
+      </div>
+      <div class="tz-bl tpk">
+        <div class="tz-name">WIT</div>
+        <div class="tz-region">Waktu Indonesia Timur<br>Maluku &amp; Papua</div>
+        <div class="tz-gmt">GMT +9</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="seas">
+        <div class="sc hdr"></div><div class="sc hdr">Bumi Utara</div><div class="sc hdr">Bumi Selatan</div>
+        <div class="sc"><div class="mo">Desember</div></div><div class="sc">❄️ Musim Dingin</div><div class="sc">☀️ Musim Panas</div>
+        <div class="sc"><div class="mo">Maret</div></div><div class="sc">🌸 Musim Semi</div><div class="sc">🍂 Musim Gugur</div>
+        <div class="sc"><div class="mo">Juni</div></div><div class="sc">☀️ Musim Panas</div><div class="sc">❄️ Musim Dingin</div>
+        <div class="sc"><div class="mo">September</div></div><div class="sc">🍂 Musim Gugur</div><div class="sc">🌸 Musim Semi</div>
+      </div>
+      <div class="fact fpk">
+        <div class="fact-tag">🌌 Fakta Ajaib</div>
+        <div class="fact-title">Negeri 22 Jam Siang!</div>
+        <p>Di Indonesia, siang dan malam masing-masing sekitar 12 jam. Tapi di Islandia pada musim panas, siang hari bisa mencapai <strong>22 jam</strong>! Dan ada masa <strong>Polar Night</strong>, malam gelap berbulan-bulan, di mana langit memperlihatkan <span class="kwpk">aurora borealis</span>, tirai cahaya hijau yang berpendar karena gesekan partikel ion Matahari dengan medan magnet Bumi.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="pg">
+  <div class="page-bar bar-c"></div>
+  <div class="pg-inner">
+
+    <div class="sec-hdr">
+      <div class="sec-letter lc">C</div>
+      <div class="sec-ttl"><span>Bagian Ketiga</span><h2>Sistem Tata Surya &amp; Teknologi Antariksa</h2></div>
+    </div>
+
+    <svg viewBox="0 0 700 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:700px;display:block;margin:0 auto;">
+  <defs>
+    <radialGradient id="bgSpace" cx="50%" cy="50%"><stop offset="0%" stop-color="#1a1c3a"/><stop offset="100%" stop-color="#080920"/></radialGradient>
+    <radialGradient id="sunTS" cx="40%" cy="38%"><stop offset="0%" stop-color="#fffde7"/><stop offset="35%" stop-color="#FFD700"/><stop offset="100%" stop-color="#e65100"/></radialGradient>
+    <filter id="glowTS"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="700" height="320" rx="10" fill="url(#bgSpace)"/>
+  <circle cx="20" cy="15" r="1" fill="#fff" opacity="0.8"/>
+  <circle cx="55" cy="8" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="90" cy="25" r="1" fill="#fff" opacity="0.9"/>
+  <circle cx="130" cy="10" r="1.2" fill="#fff" opacity="0.6"/>
+  <circle cx="180" cy="18" r="1" fill="#fff" opacity="0.8"/>
+  <circle cx="600" cy="12" r="1.5" fill="#fff" opacity="0.7"/>
+  <circle cx="640" cy="28" r="1" fill="#fff" opacity="0.9"/>
+  <circle cx="680" cy="8" r="1.2" fill="#fff" opacity="0.6"/>
+  <circle cx="25" cy="295" r="1" fill="#fff" opacity="0.7"/>
+  <circle cx="75" cy="308" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="620" cy="300" r="1" fill="#fff" opacity="0.7"/>
+  <circle cx="665" cy="310" r="1.2" fill="#fff" opacity="0.9"/>
+  <circle cx="350" cy="8" r="1" fill="#fff" opacity="0.8"/>
+  <circle cx="420" cy="15" r="1.2" fill="#fff" opacity="0.6"/>
+  <circle cx="500" cy="6" r="1" fill="#fff" opacity="0.9"/>
+  <ellipse cx="120" cy="160" rx="52"  ry="16"  fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+  <ellipse cx="120" cy="160" rx="82"  ry="24"  fill="none" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+  <ellipse cx="120" cy="160" rx="116" ry="34"  fill="none" stroke="rgba(255,255,255,0.13)" stroke-width="1"/>
+  <ellipse cx="120" cy="160" rx="158" ry="46"  fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+  <ellipse cx="120" cy="160" rx="218" ry="64"  fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+  <ellipse cx="120" cy="160" rx="284" ry="84"  fill="none" stroke="rgba(255,255,255,0.09)" stroke-width="1"/>
+  <ellipse cx="120" cy="160" rx="358" ry="108" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <ellipse cx="120" cy="160" rx="440" ry="135" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+  <ellipse cx="120" cy="160" rx="186" ry="55" fill="none" stroke="rgba(180,150,100,0.25)" stroke-width="4" stroke-dasharray="2,6"/>
+  <circle cx="120" cy="160" r="36" fill="url(#sunTS)" filter="url(#glowTS)" opacity="0.3"/>
+  <circle cx="120" cy="160" r="28" fill="url(#sunTS)"/>
+  <circle cx="172" cy="160" r="4.5" fill="#8d6e63"/>
+  <text x="172" y="148" text-anchor="middle" font-family="Nunito,sans-serif" font-size="7.5" fill="#bcaaa4">Merkurius</text>
+  <circle cx="202" cy="160" r="6" fill="#ffcc80"/>
+  <text x="202" y="147" text-anchor="middle" font-family="Nunito,sans-serif" font-size="7.5" fill="#ffe0b2">Venus</text>
+  <circle cx="236" cy="160" r="7" fill="#1976D2"/>
+  <ellipse cx="233" cy="157" rx="2.5" ry="3.5" fill="#388e3c" opacity="0.8"/>
+  <text x="236" y="145" text-anchor="middle" font-family="Nunito,sans-serif" font-size="7.5" fill="#81d4fa">Bumi</text>
+  <circle cx="245" cy="153" r="2" fill="#bdbdbd"/>
+  <circle cx="278" cy="160" r="5.5" fill="#e53935"/>
+  <text x="278" y="147" text-anchor="middle" font-family="Nunito,sans-serif" font-size="7.5" fill="#ef9a9a">Mars</text>
+  <text x="310" y="120" text-anchor="middle" font-family="Nunito,sans-serif" font-size="7" fill="rgba(180,150,100,0.9)" font-style="italic">sabuk asteroid</text>
+  <circle cx="338" cy="160" r="14" fill="#ff8f00"/>
+  <line x1="324" y1="157" x2="352" y2="157" stroke="#ff6d00" stroke-width="1.2" opacity="0.7"/>
+  <line x1="324" y1="162" x2="352" y2="162" stroke="#ffca28" stroke-width="0.8" opacity="0.5"/>
+  <line x1="325" y1="167" x2="351" y2="167" stroke="#ff6d00" stroke-width="0.8" opacity="0.4"/>
+  <text x="338" y="182" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8" fill="#ffcc80">Jupiter</text>
+  <circle cx="404" cy="160" r="12" fill="#f9a825"/>
+  <ellipse cx="404" cy="160" rx="22" ry="5" fill="none" stroke="#f0c030" stroke-width="3.5" opacity="0.5"/>
+  <ellipse cx="404" cy="160" rx="22" ry="5" fill="none" stroke="#e6aa20" stroke-width="1.5" opacity="0.3"/>
+  <text x="404" y="183" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8" fill="#ffe082">Saturnus</text>
+  <circle cx="478" cy="160" r="10" fill="#4dd0e1"/>
+  <ellipse cx="478" cy="160" rx="5" ry="14" fill="none" stroke="#80deea" stroke-width="1.8" opacity="0.55"/>
+  <text x="478" y="181" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8" fill="#80deea">Uranus</text>
+  <circle cx="560" cy="160" r="10" fill="#1565c0"/>
+  <ellipse cx="556" cy="157" rx="4" ry="3" fill="#0d47a1" opacity="0.7"/>
+  <text x="560" y="181" text-anchor="middle" font-family="Nunito,sans-serif" font-size="8" fill="#90caf9">Neptunus</text>
+  <text x="220" y="270" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="700" font-size="9" fill="rgba(255,220,100,0.9)">Planet Dalam (Berbatuan)</text>
+  <line x1="160" y1="260" x2="285" y2="260" stroke="rgba(255,220,100,0.5)" stroke-width="1"/>
+  <text x="470" y="270" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="700" font-size="9" fill="rgba(100,220,200,0.9)">Planet Luar (Gas)</text>
+  <line x1="325" y1="260" x2="620" y2="260" stroke="rgba(100,220,200,0.5)" stroke-width="1"/>
+  <text x="652" y="155" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="800" font-size="9" fill="rgba(255,255,255,0.4)" transform="rotate(90,652,160)">SISTEM TATA SURYA</text>
+</svg>
+
+    <div class="card" style="font-size:9.5pt;">
+      <p>Tata surya kita terdiri dari Matahari dan 8 planet. <span class="kw">Planet dalam</span> (berbatuan): Merkurius, Venus, Bumi, Mars, ukurannya kecil dan dekat Matahari. <span class="kw">Planet luar</span> (gas): Jupiter, Saturnus, Uranus, Neptunus, ukurannya jauh lebih besar. Selain planet ada pula <span class="kw">komet</span> (bola es berekor cahaya), <span class="kw">meteor</span> (partikel batuan yang terbakar di atmosfer), dan <span class="kw">asteroid</span> (bebatuan sisa pembentukan tata surya yang berkumpul di sabuk asteroid antara Mars dan Jupiter).</p>
+    </div>
+
+    <div class="four-col">
+      <div class="planet-card pm">
+        <div class="icon">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="#A6A6A6"/><circle cx="14" cy="15" r="3" fill="#8C8C8C"/><circle cx="26" cy="23" r="4.5" fill="#8C8C8C"/><circle cx="18" cy="27" r="2" fill="#8C8C8C"/></svg>
+        </div>
+        <div class="pname">Merkurius</div><div class="pdesc">Terkecil &amp; terdekat Matahari. Suhu: -180° hingga 420°C.</div>
+      </div>
+      <div class="planet-card pv">
+        <div class="icon">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="#F4A460"/><path d="M6,16 Q20,10 34,16" fill="none" stroke="#D2691E" stroke-width="2.5"/><path d="M5,24 Q20,18 35,24" fill="none" stroke="#D2691E" stroke-width="2.5"/></svg>
+        </div>
+        <div class="pname">Venus</div><div class="pdesc">Planet terpanas. Lapisan CO₂ tebal memerangkap panas.</div>
+      </div>
+      <div class="planet-card pb">
+        <div class="icon">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="#42A5F5"/><path d="M8,18 Q12,10 20,14 T22,26 T12,24 Z" fill="#66BB6A"/><path d="M26,12 Q32,12 30,18 T24,18 Z" fill="#66BB6A"/></svg>
+        </div>
+        <div class="pname">Bumi</div><div class="pdesc">Satu-satunya berpenghuni. Punya 1 satelit alami: Bulan.</div>
+      </div>
+      <div class="planet-card pr">
+        <div class="icon">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="#E53935"/><ellipse cx="20" cy="6" rx="5" ry="2" fill="#FFFFFF"/><circle cx="16" cy="22" r="5" fill="#C62828" opacity="0.6"/><circle cx="27" cy="15" r="3" fill="#C62828" opacity="0.6"/></svg>
+        </div>
+        <div class="pname">Mars</div><div class="pdesc">Planet merah. 2 satelit alami. Rotasi mirip Bumi.</div>
+      </div>
+      <div class="planet-card pj">
+        <div class="icon">
+          <svg viewBox="0 0 40 40"><clipPath id="jclip"><circle cx="20" cy="20" r="16"/></clipPath><g clip-path="url(#jclip)"><rect x="0" y="0" width="40" height="40" fill="#FFCC80"/><rect x="0" y="10" width="40" height="5" fill="#FFA726"/><rect x="0" y="21" width="40" height="7" fill="#FF9800"/><rect x="0" y="31" width="40" height="4" fill="#FFA726"/><circle cx="26" cy="24.5" r="3.5" fill="#E65100"/></g></svg>
+        </div>
+        <div class="pname">Jupiter</div><div class="pdesc">Terbesar di tata surya. Gas hidrogen. 16+ satelit.</div>
+      </div>
+      <div class="planet-card ps">
+        <div class="icon">
+          <svg viewBox="0 0 54 40"><circle cx="27" cy="20" r="12" fill="#FDD835"/><ellipse cx="27" cy="20" rx="25" ry="6" fill="none" stroke="#F57F17" stroke-width="3" transform="rotate(-20 27 20)"/><ellipse cx="27" cy="20" rx="21" ry="4" fill="none" stroke="#F9A825" stroke-width="1.5" transform="rotate(-20 27 20)"/></svg>
+        </div>
+        <div class="pname">Saturnus</div><div class="pdesc">Bercincin indah dari es &amp; batuan. 18 satelit alami.</div>
+      </div>
+      <div class="planet-card pu2">
+        <div class="icon">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="14" fill="#80DEEA"/><ellipse cx="20" cy="20" rx="3" ry="20" fill="none" stroke="#4DD0E1" stroke-width="1.5" transform="rotate(15 20 20)"/></svg>
+        </div>
+        <div class="pname">Uranus</div><div class="pdesc">Berotasi miring 90°! Permukaan awan hijau-biru.</div>
+      </div>
+      <div class="planet-card pn">
+        <div class="icon">
+          <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="15" fill="#1565C0"/><ellipse cx="25" cy="15" rx="5" ry="3" fill="#0D47A1"/><path d="M12,24 Q16,22 20,24" fill="none" stroke="#64B5F6" stroke-width="1.5"/></svg>
+        </div>
+        <div class="pname">Neptunus</div><div class="pdesc">Terjauh. Butuh 165 tahun untuk 1 kali revolusi penuh.</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="fact fg">
+        <div class="fact-tag">🔭 Fakta Luar Biasa</div>
+        <div class="fact-title">Ada Tata Surya Lain!</div>
+        <p>Bintang <strong>Upsilon Andromeda</strong> berjarak 44 tahun cahaya dari Bumi memiliki 3 planet, salah satunya 4 kali lebih besar dari Jupiter! Tata surya kita hanya satu dari jutaan sistem bintang di galaksi Bimasakti. 1 tahun cahaya = 9,5 triliun km.</p>
+      </div>
+      <div class="three-col" style="align-content:start;">
+        <div class="sat-card s1"><div class="icon">📡</div><div class="sname">Komunikasi</div><div class="sdesc">Siaran TV, telepon, dan internet dari mana saja.</div></div>
+        <div class="sat-card s2"><div class="icon">🗺️</div><div class="sname">Navigasi</div><div class="sdesc">Aplikasi peta digital bekerja berkat satelit GPS.</div></div>
+        <div class="sat-card s3"><div class="icon">🌦️</div><div class="sname">Cuaca</div><div class="sdesc">Memantau awan dari orbit agar kita bisa bersiap.</div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="pg">
+  <div class="page-bar bar-d"></div>
+  <div class="pg-inner">
+
+    <svg viewBox="0 0 680 230" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:0 auto;">
+  <defs>
+    <radialGradient id="spaceBG4" cx="50%" cy="50%"><stop offset="0%" stop-color="#0d1540"/><stop offset="100%" stop-color="#05080e"/></radialGradient>
+    <radialGradient id="earthBG4" cx="35%" cy="32%"><stop offset="0%" stop-color="#81d4fa"/><stop offset="40%" stop-color="#1976D2"/><stop offset="100%" stop-color="#0d47a1"/></radialGradient>
+    <radialGradient id="helmetG" cx="38%" cy="35%"><stop offset="0%" stop-color="#e3f2fd"/><stop offset="60%" stop-color="#90caf9"/><stop offset="100%" stop-color="#1565c0"/></radialGradient>
+    <filter id="glowRocket"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="680" height="230" rx="10" fill="url(#spaceBG4)"/>
+  <circle cx="15" cy="20" r="1.2" fill="#fff" opacity="0.9"/>
+  <circle cx="45" cy="10" r="1" fill="#fff" opacity="0.7"/>
+  <circle cx="100" cy="35" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="155" cy="12" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="220" cy="28" r="1.2" fill="#fff" opacity="0.9"/>
+  <circle cx="300" cy="8" r="1" fill="#fff" opacity="0.7"/>
+  <circle cx="380" cy="22" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="430" cy="6" r="1.2" fill="#fff" opacity="0.6"/>
+  <circle cx="490" cy="18" r="1" fill="#fff" opacity="0.9"/>
+  <circle cx="540" cy="32" r="1" fill="#fff" opacity="0.5"/>
+  <circle cx="600" cy="10" r="1.5" fill="#fff" opacity="0.8"/>
+  <circle cx="655" cy="25" r="1" fill="#fff" opacity="0.7"/>
+  <circle cx="30" cy="180" r="1" fill="#fff" opacity="0.6"/>
+  <circle cx="80" cy="200" r="1.2" fill="#fff" opacity="0.8"/>
+  <circle cx="180" cy="215" r="1" fill="#fff" opacity="0.7"/>
+  <circle cx="250" cy="190" r="1.5" fill="#fff" opacity="0.9"/>
+  <circle cx="630" cy="195" r="1.2" fill="#fff" opacity="0.7"/>
+  <circle cx="665" cy="210" r="1" fill="#fff" opacity="0.8"/>
+  <circle cx="120" cy="190" r="130" fill="url(#earthBG4)"/>
+  <ellipse cx="85" cy="140" rx="30" ry="18" fill="#4caf50" opacity="0.45"/>
+  <ellipse cx="130" cy="162" rx="22" ry="12" fill="#4caf50" opacity="0.35"/>
+  <ellipse cx="65" cy="168" rx="18" ry="14" fill="#4caf50" opacity="0.3"/>
+  <ellipse cx="100" cy="130" rx="26" ry="7" fill="#fff" opacity="0.25"/>
+  <ellipse cx="150" cy="150" rx="20" ry="5" fill="#fff" opacity="0.2"/>
+  <ellipse cx="75" cy="185" rx="18" ry="5" fill="#fff" opacity="0.15"/>
+  <circle cx="120" cy="190" r="135" fill="none" stroke="#42a5f5" stroke-width="4" opacity="0.2"/>
+  <g transform="translate(480,55) rotate(-8)">
+    <rect x="-10" y="-6" width="80" height="12" rx="3" fill="#d0d0e0"/>
+    <rect x="20" y="-4" width="40" height="8" rx="2" fill="#b0b8cc"/>
+    <rect x="-55" y="-22" width="42" height="10" rx="2" fill="#1565c0" opacity="0.85"/>
+    <rect x="-55" y="12" width="42" height="10" rx="2" fill="#1565c0" opacity="0.85"/>
+    <rect x="-60" y="-22" width="4" height="44" fill="#607d8b" opacity="0.7"/>
+    <rect x="73" y="-22" width="42" height="10" rx="2" fill="#1565c0" opacity="0.85"/>
+    <rect x="73" y="12" width="42" height="10" rx="2" fill="#1565c0" opacity="0.85"/>
+    <rect x="116" y="-22" width="4" height="44" fill="#607d8b" opacity="0.7"/>
+    <line x1="-42" y1="-22" x2="-42" y2="-12" stroke="#90caf9" stroke-width="0.7" opacity="0.5"/>
+    <line x1="-28" y1="-22" x2="-28" y2="-12" stroke="#90caf9" stroke-width="0.7" opacity="0.5"/>
+    <line x1="-14" y1="-22" x2="-14" y2="-12" stroke="#90caf9" stroke-width="0.7" opacity="0.5"/>
+    <circle cx="10" cy="0" r="3.5" fill="#fff" opacity="0.6"/>
+    <circle cx="28" cy="0" r="3.5" fill="#fff" opacity="0.6"/>
+    <circle cx="46" cy="0" r="3.5" fill="#fff" opacity="0.6"/>
+    <rect x="35" y="-10" width="12" height="20" rx="2" fill="#9e9e9e"/>
+  </g>
+  <text x="530" y="120" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9" fill="rgba(255,255,255,0.6)" font-style="italic">Stasiun Luar Angkasa (ISS)</text>
+  <g transform="translate(340,115) rotate(15)">
+    <ellipse cx="0" cy="18" rx="20" ry="25" fill="#e0e0e0"/>
+    <rect x="-12" y="4" width="24" height="18" rx="4" fill="#bdbdbd"/>
+    <rect x="-8" y="7" width="6" height="4" rx="1" fill="#1565c0" opacity="0.8"/>
+    <rect x="2" y="7" width="6" height="4" rx="1" fill="#c62828" opacity="0.8"/>
+    <rect x="-8" y="14" width="14" height="3" rx="1" fill="#424242" opacity="0.6"/>
+    <circle cx="0" cy="-10" r="18" fill="#cfd8dc"/>
+    <ellipse cx="0" cy="-10" rx="13" ry="12" fill="url(#helmetG)" opacity="0.85"/>
+    <ellipse cx="-4" cy="-15" rx="5" ry="4" fill="#fff" opacity="0.35"/>
+    <ellipse cx="-24" cy="10" rx="8" ry="16" fill="#e0e0e0" transform="rotate(-20,-24,10)"/>
+    <ellipse cx="24" cy="10" rx="8" ry="16" fill="#e0e0e0" transform="rotate(25,24,10)"/>
+    <ellipse cx="-30" cy="22" rx="7" ry="6" fill="#bdbdbd" transform="rotate(-20,-30,22)"/>
+    <ellipse cx="30" cy="24" rx="7" ry="6" fill="#bdbdbd" transform="rotate(25,30,24)"/>
+    <ellipse cx="-10" cy="45" rx="9" ry="16" fill="#e0e0e0"/>
+    <ellipse cx="10" cy="46" rx="9" ry="16" fill="#e0e0e0" transform="rotate(8,10,46)"/>
+    <ellipse cx="-10" cy="60" rx="10" ry="6" fill="#9e9e9e"/>
+    <ellipse cx="11" cy="62" rx="10" ry="6" fill="#9e9e9e"/>
+    <rect x="-34" y="2" width="10" height="7" rx="1" fill="#c62828"/>
+    <line x1="-34" y1="5.3" x2="-24" y2="5.3" stroke="#fff" stroke-width="0.8"/>
+    <rect x="14" y="2" width="10" height="20" rx="3" fill="#9e9e9e"/>
+    <path d="M 26 8 Q 80 -10 120 -40" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-dasharray="3,2"/>
+  </g>
+  <g transform="translate(600,40) rotate(-35)">
+    <ellipse cx="0" cy="0" rx="7" ry="22" fill="#f5f5f5"/>
+    <path d="M-7,-2 Q0,-30 7,-2 Z" fill="#e53935"/>
+    <circle cx="0" cy="2" r="4" fill="#90caf9" opacity="0.8"/>
+    <path d="M-7,18 L-16,30 L-7,26 Z" fill="#bdbdbd"/>
+    <path d="M7,18 L16,30 L7,26 Z" fill="#bdbdbd"/>
+    <ellipse cx="0" cy="32" rx="5" ry="9" fill="#ff6d00" opacity="0.75" filter="url(#glowRocket)"/>
+    <ellipse cx="0" cy="35" rx="3.5" ry="7" fill="#FFD700" opacity="0.8"/>
+    <ellipse cx="0" cy="37" rx="2" ry="5" fill="#fff" opacity="0.9"/>
+  </g>
+  <text x="340" y="210" text-anchor="middle" font-family="Baloo 2,sans-serif" font-weight="700" font-size="11" fill="rgba(255,255,255,0.7)">Astronot menjelajahi luar angkasa</text>
+  <text x="340" y="224" text-anchor="middle" font-family="Nunito,sans-serif" font-size="9.5" fill="rgba(255,255,255,0.45)">dengan latar Bumi yang indah dari orbit</text>
+</svg>
+
+    <div class="two-col">
+      <div class="card" style="font-size:9.5pt;">
+        <p>Teknologi antariksa terus berkembang pesat. Misi <span class="kwg">Mars 2020</span> berhasil mengambil sampel tanah Mars dan menemukan bekas alur sungai kering, bukti bahwa jutaan tahun lalu mungkin pernah ada air di sana. Penerbangan komersial ke luar angkasa oleh <span class="kwg">Virgin Galactic</span> dan misi penumpang oleh <span class="kwg">SpaceX</span> sudah berhasil. Siapa tahu saat kamu dewasa, liburan ke luar angkasa adalah hal biasa!</p>
+      </div>
+      <div class="sumbox">
+        <h3>🎯 Rangkuman</h3>
+        <div class="sum-item"><div class="sbullet by">A</div><div><strong style="color:var(--y)">Matahari, Bumi &amp; Bulan:</strong> Matahari adalah bintang pusat tata surya; Bumi planet berpenghuni; Bulan satelit alami Bumi yang selalu mengorbitinya.</div></div>
+        <div class="sum-item"><div class="sbullet bb">B</div><div><strong style="color:var(--b)">Rotasi &amp; Revolusi:</strong> Rotasi (24 jam) menciptakan siang-malam dan zona waktu; revolusi (365,25 hari) + kemiringan 23,5° menciptakan pergantian musim.</div></div>
+        <div class="sum-item"><div class="sbullet bpk">C</div><div><strong style="color:var(--pk)">Tata Surya &amp; Antariksa:</strong> 8 planet + komet + meteor + asteroid. Satelit buatan membantu komunikasi, navigasi, dan cuaca. Eksplorasi Mars terus berlanjut!</div></div>
+      </div>
+    </div>
+
+    <div class="divline"><span>💬</span></div>
+
+    <div class="q-title">Yuk, Diskusi Bareng Teman!</div>
+    <div class="q-grid">
+      <div class="q-card"><div class="q-num qn1">Pertanyaan 1</div><p>Di bagian pertama disebutkan bahwa kita selalu melihat wajah Bulan yang sama setiap malam. Mengapa hal itu bisa terjadi?</p></div>
+      <div class="q-card"><div class="q-num qn2">Pertanyaan 2</div><p>Coba perhatikan tabel musim! Apa musim yang sedang terjadi di Bumi bagian Utara dan Bumi bagian Selatan pada bulan Desember? Kapan giliran Bumi Utara mengalami musim panas?</p></div>
+      <div class="q-card"><div class="q-num qn3">Pertanyaan 3</div><p>Venus bukanlah planet yang letaknya paling dekat dengan Matahari, tetapi ia justru menjadi planet yang paling panas. Apa penyebabnya?</p></div>
+      <div class="q-card"><div class="q-num qn4">Pertanyaan 4</div><p>Tata surya dibagi menjadi dua kelompok planet. Coba sebutkan apa perbedaan utama antara "Planet Dalam" dan "Planet Luar" dari segi bahan pembentuk dan ukurannya!</p></div>
+      <div class="q-card"><div class="q-num qn5">Pertanyaan 5</div><p>Bumi dibagi menjadi beberapa zona waktu karena berotasi. Jika kamu berada di Kalimantan Timur (WITA), apakah jamnya akan sama dengan temanmu di Sumatera (WIB)?</p></div>
+      <div class="q-card"><div class="q-num qn6">Pertanyaan 6</div><p>Kalau kamu pergi ke Islandia, ada masa di mana malam hari berlangsung gelap selama berbulan-bulan! Menurut kotak "Fakta Ajaib", pertunjukan cahaya cantik apa yang bisa kamu tonton di langit saat masa gelap tersebut?</p></div>
+    </div>
+
+  </div>
+</div>
+
+</body>
+</html>
